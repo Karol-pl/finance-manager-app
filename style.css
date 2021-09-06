@@ -1,0 +1,324 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --first-color: #ffddad;
+  --second-color: #020129;
+  --border-color: rgba(0, 0, 0, 0.2);
+}
+
+.dark {
+  --first-color: #020129;
+  --second-color: #ffddad;
+  --border-color: rgba(255, 255, 255, 0.4);
+}
+
+.add-transaction-panel .category-select, .options, main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  height: 100vh;
+  font-family: "Montserrat", sans-serif;
+  color: var(--second-color);
+  background-color: var(--first-color);
+}
+
+header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-flow: row wrap;
+  margin-bottom: 20px;
+  height: 10vh;
+  width: 100%;
+}
+header h1 {
+  font-size: 4rem;
+  font-weight: 200;
+}
+header .style-options {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+header .style-options .title {
+  font-size: 1rem;
+  letter-spacing: 1px;
+  margin: 10px 0px;
+}
+header .style-options .color-buttons button {
+  margin: 20px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  transform: rotate(45deg);
+  transition: all 0.3s ease-in-out;
+}
+header .style-options .color-buttons button:hover {
+  transform: scale(0.9);
+  transform: rotate(0deg);
+}
+header .style-options .color-buttons .light {
+  background-color: #ffddad;
+  border: 1px solid #020129;
+}
+header .style-options .color-buttons .dark {
+  background-color: #020129;
+  border: 1px solid #ffddad;
+}
+
+main {
+  flex-flow: column nowrap;
+}
+
+h2.title {
+  margin: 20px 0;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 2rem;
+  font-weight: 200;
+}
+
+.transactions {
+  width: 1000px;
+}
+.transactions h3 {
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 1.6rem;
+}
+.transactions .transaction-list {
+  display: flex;
+  justify-content: space-between;
+}
+.transactions .income-container,
+.transactions .expenses-container {
+  margin: 0 20px;
+  padding: 20px;
+  max-width: 400px;
+  width: 50%;
+  border: 1px solid var(--border-color);
+}
+.transactions .income-container h3,
+.transactions .income-container .transaction-amount {
+  color: #13c86c;
+  font-weight: bold;
+}
+.transactions .expenses-container h3,
+.transactions .expenses-container .transaction-amount {
+  color: #ff6868;
+  font-weight: bold;
+}
+.transactions .transaction {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+.transactions .transaction:last-child {
+  border-bottom: none;
+}
+.transactions .transaction .delete {
+  margin-left: 10px;
+  background: none;
+  border: none;
+  font-size: 0.8rem;
+  color: var(--second-color);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.transactions .transaction .delete:hover {
+  transform: scale(0.8);
+}
+.transactions .transaction-name {
+  font-size: 0.8rem;
+}
+.transactions .transaction-name i {
+  margin-right: 10px;
+}
+
+.options {
+  padding: 40px 40px;
+  width: 1000px;
+  max-width: 100%;
+  border-bottom: 1px solid var(--second-color);
+  justify-content: space-between;
+}
+.options .available-money {
+  margin-top: -10px;
+  text-align: center;
+  font-size: 3.8rem;
+}
+.options .controls {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  margin: 0px 10px;
+}
+.options .controls button {
+  margin: 10px;
+  padding: 12px 20px;
+  color: var(--second-color);
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  background: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  transform: translateX(50px);
+}
+.options .controls button:hover {
+  color: var(--first-color);
+  background-color: var(--second-color);
+  transform: translateX(0px);
+}
+.options .controls i {
+  margin: 5px;
+}
+
+.add-transaction-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column nowrap;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: #ffffff;
+  background-image: linear-gradient(315deg, rgba(0, 0, 0, 0.9) 0%, rgba(20, 20, 20, 0.9) 75%);
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: all 0.3s ease-in-out;
+}
+.add-transaction-panel .title {
+  margin-bottom: 0;
+}
+.add-transaction-panel label {
+  margin-top: 30px;
+  margin-bottom: 5px;
+  font-size: 2rem;
+}
+.add-transaction-panel small {
+  margin-bottom: 15px;
+  font-style: italic;
+  color: #dddddd;
+}
+.add-transaction-panel input,
+.add-transaction-panel select {
+  width: 800px;
+}
+.add-transaction-panel input,
+.add-transaction-panel select,
+.add-transaction-panel button {
+  padding: 10px 20px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+.add-transaction-panel input,
+.add-transaction-panel select,
+.add-transaction-panel option {
+  font-size: 1rem;
+}
+.add-transaction-panel .category-select {
+  flex-flow: row nowrap;
+}
+.add-transaction-panel .category-select label {
+  margin: 10px 50px;
+  text-align: center;
+}
+.add-transaction-panel .category-select label input {
+  width: 50px;
+}
+.add-transaction-panel .panel-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+.add-transaction-panel button {
+  margin: 0 30px;
+  padding: 15px 40px;
+  font-size: 1rem;
+  color: #ffffff;
+  background: none;
+  cursor: pointer;
+  border: 1px solid white;
+  transition: all 0.3s ease-in-out;
+}
+.add-transaction-panel button i {
+  margin: 0 5px;
+}
+.add-transaction-panel button:hover {
+  background-color: #191b33;
+}
+
+.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 975px) {
+  header {
+    justify-content: center;
+    align-items: center;
+    flex-flow: column nowrap;
+    height: 30vh;
+  }
+  header h1 {
+    font-size: 3rem;
+    margin-top: 50px;
+    margin-left: 80px;
+  }
+
+  .transactions {
+    width: 100%;
+  }
+
+  .transaction-list {
+    flex-flow: column nowrap;
+    align-items: center;
+  }
+  .transaction-list .income-container,
+.transaction-list .expenses-container {
+    margin: 20px;
+  }
+
+  .add-transaction-panel {
+    height: 100%;
+    width: 100%;
+  }
+  .add-transaction-panel input,
+.add-transaction-panel select {
+    width: 50%;
+  }
+}
+@media (max-width: 400px) {
+  header h1 {
+    font-size: 3rem;
+    margin-top: 100px;
+    margin-left: 50px;
+  }
+
+  .options {
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .transaction-list {
+    flex-flow: column wrap;
+  }
+  .transaction-list .income-container,
+.transaction-list .expenses-container {
+    margin: 20px 0px;
+    width: 250px;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

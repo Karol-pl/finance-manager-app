@@ -1,0 +1,375 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+$first-color: rgb(255, 221, 173);
+$second-color: rgb(2, 1, 41);
+$border-color: rgba(0, 0, 0, 0.2);
+$border-color-dark: rgba(255, 255, 255, 0.4);
+
+:root {
+  --first-color: #{$first-color};
+  --second-color: #{$second-color};
+  --border-color: #{$border-color};
+}
+
+.dark {
+  --first-color: #{$second-color};
+  --second-color: #{$first-color};
+  --border-color: #{$border-color-dark};
+}
+
+%flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  height: 100vh;
+  font-family: "Montserrat", sans-serif;
+  color: var(--second-color);
+  background-color: var(--first-color);
+}
+
+header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-flow: row wrap;
+  margin-bottom: 20px;
+  height: 10vh;
+  width: 100%;
+
+  h1 {
+    font-size: 4rem;
+    font-weight: 200;
+  }
+  .style-options {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+
+    .title {
+      font-size: 1rem;
+      letter-spacing: 1px;
+      margin: 10px 0px;
+    }
+
+    .color-buttons {
+      & button {
+        margin: 20px;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        transform: rotate(45deg);
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+          transform: scale(0.9);
+          transform: rotate(0deg);
+        }
+      }
+
+      .light {
+        background-color: #{$first-color};
+        border: 1px solid #{$second-color};
+      }
+
+      .dark {
+        background-color: #{$second-color};
+        border: 1px solid #{$first-color};
+      }
+    }
+  }
+}
+
+main {
+  @extend %flex-center;
+  flex-flow: column nowrap;
+}
+
+h2.title {
+  margin: 20px 0;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 2rem;
+  font-weight: 200;
+}
+
+.transactions {
+  width: 1000px;
+
+  h3 {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.6rem;
+  }
+
+  .transaction-list {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .income-container,
+  .expenses-container {
+    margin: 0 20px;
+    padding: 20px;
+    max-width: 400px;
+    width: 50%;
+    border: 1px solid var(--border-color);
+  }
+
+  .income-container h3,
+  .income-container .transaction-amount {
+    color: rgb(19, 200, 108);
+    font-weight: bold;
+  }
+
+  .expenses-container h3,
+  .expenses-container .transaction-amount {
+    color: rgb(255, 104, 104);
+    font-weight: bold;
+  }
+
+  .transaction {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+
+    &:last-child {
+      border-bottom: none;
+    }
+    .delete {
+      margin-left: 10px;
+      background: none;
+      border: none;
+      font-size: 0.8rem;
+      color: var(--second-color);
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        transform: scale(0.8);
+      }
+    }
+  }
+
+  .transaction-name {
+    font-size: 0.8rem;
+
+    i {
+      margin-right: 10px;
+    }
+  }
+}
+
+.options {
+  padding: 40px 40px;
+  width: 1000px;
+  max-width: 100%;
+  border-bottom: 1px solid var(--second-color);
+  @extend %flex-center;
+  justify-content: space-between;
+
+  .available-money {
+    margin-top: -10px;
+    text-align: center;
+    font-size: 3.8rem;
+  }
+
+  .controls {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    margin: 0px 10px;
+
+    button {
+      margin: 10px;
+      padding: 12px 20px;
+      color: var(--second-color);
+      border: 1px solid var(--border-color);
+      border-radius: 5px;
+      background: none;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      transform: translateX(50px);
+
+      &:hover {
+        color: var(--first-color);
+        background-color: var(--second-color);
+        transform: translateX(0px);
+      }
+    }
+
+    i {
+      margin: 5px;
+    }
+  }
+}
+.add-transaction-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column nowrap;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: #ffffff;
+  background-image: linear-gradient(
+    315deg,
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(20, 20, 20, 0.9) 75%
+  );
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: all 0.3s ease-in-out;
+
+  .title {
+    margin-bottom: 0;
+  }
+
+  label {
+    margin-top: 30px;
+    margin-bottom: 5px;
+    font-size: 2rem;
+  }
+
+  small {
+    margin-bottom: 15px;
+    font-style: italic;
+    color: #dddddd;
+  }
+
+  input,
+  select {
+    width: 800px;
+  }
+
+  input,
+  select,
+  button {
+    padding: 10px 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+  }
+
+  input,
+  select,
+  option {
+    font-size: 1rem;
+  }
+
+  .category-select {
+    @extend %flex-center;
+    flex-flow: row nowrap;
+
+    label {
+      margin: 10px 50px;
+      text-align: center;
+
+      input {
+        width: 50px;
+      }
+    }
+  }
+
+  .panel-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+  }
+
+  button {
+    margin: 0 30px;
+    padding: 15px 40px;
+    font-size: 1rem;
+    color: #ffffff;
+    background: none;
+    cursor: pointer;
+    border: 1px solid white;
+    transition: all 0.3s ease-in-out;
+
+    i {
+      margin: 0 5px;
+    }
+
+    &:hover {
+      background-color: rgb(25, 27, 51);
+    }
+  }
+}
+
+.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 975px) {
+  header {
+    justify-content: center;
+    align-items: center;
+    flex-flow: column nowrap;
+    height: 30vh;
+
+    h1 {
+      font-size: 3rem;
+      margin-top: 50px;
+      margin-left: 80px;
+    }
+  }
+
+  .transactions {
+    width: 100%;
+  }
+
+  .transaction-list {
+    flex-flow: column nowrap;
+    align-items: center;
+
+    .income-container,
+    .expenses-container {
+      margin: 20px;
+    }
+  }
+
+  .add-transaction-panel {
+    height: 100%;
+    width: 100%;
+    input,
+    select {
+      width: 50%;
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  header {
+    h1 {
+      font-size: 3rem;
+      margin-top: 100px;
+      margin-left: 50px;
+    }
+  }
+
+  .options {
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .transaction-list {
+    flex-flow: column wrap;
+
+    .income-container,
+    .expenses-container {
+      margin: 20px 0px;
+      width: 250px;
+    }
+  }
+}
